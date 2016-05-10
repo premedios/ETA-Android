@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BusStopsFile busStopsFile = new BusStopsFile();
+        InputStream inputStream = getApplicationContext().getResources().openRawResource(R.raw.codigos_de_paragem);
+        BusStopsFile busStopsFile = new BusStopsFile(inputStream);
 
     }
 }

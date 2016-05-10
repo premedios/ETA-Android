@@ -1,10 +1,9 @@
 package com.pedroremedios.eta;
 
+import android.util.Log;
+
 import java.io.InputStream;
 import java.util.List;
-
-import android.os.Bundle;
-import android.util.Log;
 
 import com.activeandroid.query.Select;
 import com.pedroremedios.eta.Model.BusStop;
@@ -15,15 +14,19 @@ import com.pedroremedios.eta.Model.BusStop;
 public class BusStopsFile {
     private CSVFile CodigoParagensFile;
 
-    public BusStopsFile() {
-        InputStream inputStream = getResources().openRawResource(R.raw.codigos_de_paragem);
-        CodigoParagensFile = new CSVFile(inputStream);
+    public BusStopsFile(InputStream inputStream) {
 
-        List busStops = CodigoParagensFile.read();
+        BusStop firstRecord = getFirstRecord();
+        Log.d("BusStopsFile", firstRecord.busroutenumber);
+        if (getFirstRecord() == null) {
+            CodigoParagensFile = new CSVFile(inputStream);
 
-        for (int i=0; i<busStops.size(); i++) {
-            BusStop busStop = new BusStop((String[]) busStops.get(i));
-            busStop.SaveBusStop();
+            List busStops = CodigoParagensFile.read();
+
+            for (int i = 1; i < busStops.size(); i++) {
+                BusStop busStop = new BusStop((String[]) busStops.get(i));
+                busStop.SaveBusStop();
+            }
         }
     }
 

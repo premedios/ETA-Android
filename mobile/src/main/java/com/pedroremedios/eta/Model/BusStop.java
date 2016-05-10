@@ -9,33 +9,36 @@ import com.activeandroid.query.Select;
  * Created by user on 09/05/2016.
  */
 
-@Table(name = "Bus Stop")
+@Table(name = "BusStop")
 public class BusStop extends Model {
 
-    @Column(name = "Bus Route Number")
+    @Column(name = "BusRouteNumber")
     public String busroutenumber;
 
-    @Column(name = "Micro Zone")
+    @Column(name = "MicroZone")
     public String microzonename;
 
     @Column(name = "Direction")
     public String direction;
 
-    @Column(name = "Order")
+    @Column(name = "ListingOrder")
     public Integer order;
 
-    @Column(name = "SMS Code")
+    @Column(name = "SMSCode")
     public String smscode;
 
-    @Column(name = "Stop Name")
+    @Column(name = "StopName")
     public String stopname;
 
     @Column(name = "Localization")
     public String localization;
 
-    @Column(name = "Route Destination")
+    @Column(name = "RouteDestination")
     public String routedestination;
 
+    public BusStop() {
+
+    }
     public BusStop(String[] DataLine) {
         super();
 
